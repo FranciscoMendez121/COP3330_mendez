@@ -88,16 +88,10 @@ public class Decrypter {
     }
 
         public static void main(String[] args){
-            //Creating a scanner to scan the user input
-            Scanner scan = new Scanner(System.in);
-
-            System.out.print("Please enter a four digit number: ");
-            //Storing the scanned input into the string num.
-            String num = scan.nextLine();
 
             //calling the decrypt method which will call the other "helper functions" as well. It will fully decrypt the user input
-            String decryptedNumber = decrypt(num);
-            System.out.println("The decrypted number is: "+decryptedNumber);
+            String decryptedNumber = Decrypter.decrypt("0189"); //My test code
+            System.out.println(""+decryptedNumber); //My tested output
 
         }
     }

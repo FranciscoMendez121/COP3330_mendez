@@ -57,15 +57,10 @@ public class Encrypter {
     }
 
 
-    public static void main(String[] args){
-        //Here I am scanning the input from the user using the Scanner "scan"
-        Scanner scan = new Scanner(System.in);
+    public static void main(String[] args) {
 
-        System.out.print("Please enter a four digit number: ");
-        //storing the scanned value into the String num
-        String num = scan.nextLine();
-        //Calling the method encrypt which will then call the two "helper" functions.
-        String encryptedNumber = encrypt(num);
-        System.out.println("The encrypted number is: "+encryptedNumber);
+        //Calling the method encrypt which will then call the two "helper" functions
+        String encryptedNumber = Encrypter.encrypt("1234"); //My test code
+        System.out.println(""+encryptedNumber); //output for my tested code
     }
 }
