@@ -2,107 +2,105 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
-
-    public static double getUserWeight(){
+    //This method prompts the user for their weight, scans then stores the value.
+    public static double getUserWeight() {
+        //Prompting the user to enter a weight and scanning the information
         System.out.println("\nPlease enter your weight: ");
         Scanner input = new Scanner(System.in);
         double weightValue = input.nextDouble();
-        //Checking If the user enters a negative number
+
+        //If the user enters a positive number, store the number of the weight.
         if (weightValue > 0.0) {
             System.out.println("Thank you, displaying your entered weight: ");
             System.out.print(weightValue);
         }
-        else if (weightValue < 0.0){
-            do{
+        /*
+        If the weight is negative, continue asking the user to enter a positive "non-negative" number until they
+        finally enter a positive number.
+        */
+        else if (weightValue < 0.0) {
+            do {
                 System.out.println("Please enter a non-negative value for your weight: ");
                 Scanner realInput = new Scanner(System.in);
                 weightValue = realInput.nextDouble();
             } while (weightValue < 0.0);
         }
-
         //Just checking if the user enters a 0, then asks to rescan the input and rescans
-        else{
-            System.out.println("You did not enter any weight value, please enter a weight value: ");
-            Scanner secondTimeUserInput = new Scanner(System.in);
-            weightValue = secondTimeUserInput.nextDouble();
+        else {
+            do {
+                System.out.println("You did not enter any weight value, please enter a weight value: ");
+                Scanner secondTimeUserInput = new Scanner(System.in);
+                weightValue = secondTimeUserInput.nextDouble();
+            } while (weightValue == 0.0);
         }
         return weightValue;
     }
 
-    public static double getUserHeight(){
+    //This method will prompt the user to enter a height and scan the height
+    public static double getUserHeight() {
 
         System.out.println("\nPlease enter your height: ");
         Scanner input = new Scanner(System.in);
         double heightValue = input.nextDouble();
-
-        if (heightValue > 0.0){
+        //If the height is positive, perfect, now store that value and display the height
+        if (heightValue > 0.0) {
             System.out.println("\nThank you, displaying your entered height: ");
             System.out.print(heightValue);
         }
-        else if (heightValue < 0.0){
-            do{
+        /*
+        If the height value is negative, continue to prompt the user to enter a positive value for the height
+        once they do enter a positive value for the height, store the value and display it.
+        */
+        else if (heightValue < 0.0) {
+            do {
                 System.out.println("\nPlease enter a non-negative value for your height: ");
                 Scanner realInput = new Scanner(System.in);
                 heightValue = realInput.nextDouble();
 
-            } while(heightValue < 0.0);
+            } while (heightValue < 0.0);
         }
-        else{
-            System.out.println("\n0 is not a valid height value, please enter a height value: ");
-            Scanner thirdUserInput = new Scanner(System.in);
-            heightValue = thirdUserInput.nextDouble();
+        /*
+        If the height value is zero, continue to prompt the user to enter a positive value for the height
+        once they do enter a positive value for the height, store the value and display it.
+        */
+        else {
+            do {
+                System.out.println("\n0 is not a valid height value, please enter a height value: ");
+                Scanner secondTimeUserInput = new Scanner(System.in);
+                heightValue = secondTimeUserInput.nextDouble();
+            } while (heightValue == 0.0);
         }
 
         return heightValue;
     }
 
-    //This is how you calculate the average
-    //loop through BMI objects that you've collected, sum up the scores of the objects then divide by the number of times you looped
-
-
-    public static void main(String [] args){
-        //Wrapped BodyMassIndex bmiDAta.
-        ArrayList<BodyMassIndex> bmiData = new ArrayList<BodyMassIndex>();
-
-        while (moreInput()){
-            double height = getUserHeight();
-            double weight = getUserWeight();
-
-            BodyMassIndex bmi = new BodyMassIndex(height, weight);
-            //the .add is a method already defined in the java.util which already adds the value to the ArrayList so don't worry.
-            //Adds it to the end of the ArrayList
-            //adds the bmi of height and weight to the bmiData.
-            bmiData.add(bmi);
-            //Method in here
-            displayBmiInfo(bmi);
+    //function to display the average bmi score data.
+    public static void displayBmiStatistics(ArrayList<BodyMassIndex> bmiData) {
+        for (int i = 0; i < bmiData.size(); i++) {
+            BodyMassIndex score = bmiData.get(i);
+            System.out.println(score);
         }
-        //Method in here
-        displayBmiStatistics(bmiData);
     }
 
-    //End of the main
-
-    //Prototype function to display the data.
-    public static void displayBmiStatistics(ArrayList<BodyMassIndex> bmiData){
-        //for(BodyMassIndex data :bmiData){
-            for(int i = 0; i < bmiData.size(); i++){
-                BodyMassIndex score = bmiData.get(i);
-                System.out.println(score);
-            }
-        //}
-    }
-
-    public static boolean moreInput(){
+    /*
+    This method prompts the user if they wish to add input to the function. If they do then return true
+    If they do not want to add more input, then return false.
+    */
+    public static boolean moreInput() {
+        //Initializing the return value to be true.
         boolean yesOrNo = true;
-
+        /*
+        This integer will determine if the user enters a value that is not Y or N.
+        The value will only change if the user enters Y or N.
+        */
         int count = 0;
-        
+        //This do while loop ensures that the user enters either Y or N and adjusts the count value.
         do {
             Scanner input = new Scanner(System.in);
             System.out.println("Would you like to enter a height and weight value?: ( Y or N ) ");
             String choice = input.nextLine();
 
-            switch(choice) {
+            switch (choice) {
                 //They do want to enter more input;
                 case "Y":
                     yesOrNo = true;
@@ -114,18 +112,38 @@ public class App {
                     break;
                 default:
                     System.out.println("\nYou did not enter either Y or N. Please try again: ");
-
             }
 
-        } while(count == 0);
+        } while (count == 0);
 
         return yesOrNo;
     }
 
-    public static void displayBmiInfo(BodyMassIndex b){
+    /*
+    This method calls a method in the BodyMassIndex class to print out the bmi score
+    which will also print out the category
+    */
+    public static void displayBmiInfo(BodyMassIndex b) {
         b.printBmiScore();
     }
 
-    //End of the class
+
+    //main method where the program enters. Can not be changed as per instructions.
+    public static void main(String[] args) {
+        ArrayList<BodyMassIndex> bmiData = new ArrayList<BodyMassIndex>();
+
+        while (moreInput()) {
+            double height = getUserHeight();
+            double weight = getUserWeight();
+
+            BodyMassIndex bmi = new BodyMassIndex(height, weight);
+
+            bmiData.add(bmi);
+            displayBmiInfo(bmi);
+        }
+
+        displayBmiStatistics(bmiData);
+    }
+
 }
 

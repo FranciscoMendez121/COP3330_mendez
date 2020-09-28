@@ -19,7 +19,9 @@ public class BodyMassIndex {
         this.weight = weight;
     }
 
+    //This method contains the categories for each bmi score range and will return a string value to test in the test class.
     public String printCategoryDeterminer(double score){
+        //Initializing a String string which will change depending on the bmi category. Primarily for testing.
         String string = "";
         if(score < 18.5){
             System.out.println("\nUnderweight");
@@ -54,23 +56,16 @@ public class BodyMassIndex {
     public double calcBmi(){
         double score = ((weight * 703)/(height * height));
 
-        double roundedValue = roundVal(score,2);
-
-        return roundedValue;
+        return roundVal(score,2);
     }
 
 
-    //This method prints the bmi score based on the categories listed on the method printCategoryDeterminer.
+    //This method calls calcBmi and prints the bmi score based on the categories listed on the method printCategoryDeterminer.
     public void printBmiScore(){
 
         double score = calcBmi();
 
         printCategoryDeterminer(score);
     }
-
-
-
-
-
 
 }

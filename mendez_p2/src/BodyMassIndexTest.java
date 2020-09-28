@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BodyMassIndexTest {
 
     private BodyMassIndex bmi;
-
+    //Testing the calcBmi method to ensure the calculation is correct.
     @Test
     public void testCalcBmi(){
         double height = 68;
@@ -16,7 +16,10 @@ class BodyMassIndexTest {
 
         assertEquals(25.85,score);
     }
-
+    /*
+    Testing if given a specific height and weight, the method will return the appropriate category.
+    Here it will be "Underweight"
+    */
     @Test
     public void testIsUnderweight(){
 
@@ -33,7 +36,10 @@ class BodyMassIndexTest {
 
         assertEquals(string1, bmi.printCategoryDeterminer(score));
     }
-
+    /*
+    Testing if given a specific height and weight, the method will return the appropriate category.
+    Here it will be "Normal weight"
+    */
     @Test
     public void testIsNormalWeight(){
 
@@ -50,7 +56,10 @@ class BodyMassIndexTest {
 
         assertEquals(string1, bmi.printCategoryDeterminer(score));
     }
-
+    /*
+    Testing if given a specific height and weight, the method will return the appropriate category.
+    Here it will be "Over weight"
+    */
     @Test
     public void testIsOverWeight(){
         double height = 50;
@@ -66,6 +75,10 @@ class BodyMassIndexTest {
 
         assertEquals(string1, bmi.printCategoryDeterminer(score));
     }
+    /*
+    Testing if given a specific height and weight, the method will return the appropriate category.
+    Here it will be "Obese"
+    */
 
     @Test
     public void testIsObese(){
@@ -82,7 +95,7 @@ class BodyMassIndexTest {
 
         assertEquals(string1, bmi.printCategoryDeterminer(score));
     }
-
+    //Testing to make sure that the bmi score is calculated correctly and printed correctly.
     @Test
     public void testPrintBmiScore(){
         double height = 68;
