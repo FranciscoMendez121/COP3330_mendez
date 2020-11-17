@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class TaskItem {
 
+    //Task items have a title, description, and date
     protected String taskTitle;
     protected String taskDescription;
     protected String taskDate;
@@ -38,6 +39,7 @@ public class TaskItem {
         this.taskDate = date;
     }
 
+    //This method checks to see if the title is valid through a try and catch block
     public String isValidTitle(String title) {
 
         try {
@@ -51,6 +53,7 @@ public class TaskItem {
         return getTaskTitle();
     }
 
+    //This method checks to see if the description is valid through a try and catch block
     public String isValidDescription(String description) {
 
         try {
@@ -64,7 +67,7 @@ public class TaskItem {
 
         return getTaskDescription();
     }
-
+    //This method checks to see if the date is valid through a try and catch block
     public String isValidDate(String date) {
 
         try {
@@ -80,6 +83,7 @@ public class TaskItem {
         return getTaskDate();
     }
 
+    //This method will create a task item when called upon and will return the created item
     public static TaskItem createTaskItem(String title, String description, String date) {
 
         setTaskTitle(title);

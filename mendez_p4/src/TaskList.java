@@ -14,8 +14,10 @@ public class TaskList extends TaskItem {
         super(title, description, date);
     }
 
+    //This is the list which will hold Task Items
     static ArrayList<TaskItem> list = new ArrayList<>();
 
+    //This method displays the current tasks when called upon
     public static void displayList(){
         for(int i = 0; i <= list.size(); i++){
             System.out.println("Current Tasks");
@@ -24,10 +26,12 @@ public class TaskList extends TaskItem {
         }
     }
 
+    //This method will add a task to the list
     public static void addToList(){
         list.add(createTaskItem(taskTitle,taskDescription,taskDate));
     }
 
+    //This method will display the list and delete an item that the user wishes to delete.
     public static void deleteItem(){
 
         System.out.println("Please Choose a Task to delete: ");
@@ -47,15 +51,20 @@ public class TaskList extends TaskItem {
 
     }
 
+    //This method will add a marker to the task that the user wishes to mark
     public static void setMark(int place){
         TaskItem marker = new TaskItem("*","*","*");
         list.set(place,marker);
     }
 
+    //This method will un-mark the task the user wishes to un-mark
     public static void unMark(int place){
         TaskItem unMarker = new TaskItem("","","");
         list.set(place,unMarker);
     }
+
+    //This method calls upon displayUnmarkedItems() and checks to see if the user selects a correct item from
+    //The displayed list. It then calls upon the setMark method to mark the item.
     public static void markAnItem(){
         displayUnmarkedItems();
         System.out.println("Please choose which item will be marked with an '(***)': ");
@@ -73,6 +82,8 @@ public class TaskList extends TaskItem {
         }
     }
 
+    //This method calls upon displayMarkedItems() and checks to see if the user selects a correct item from
+    //The displayed list. It then calls upon the unMark method to un-mark the item.
     public static void unmarkAnItem(){
         displayMarkedItems();
         System.out.println("Please choose which marked items will be unmarked: ");
@@ -89,6 +100,7 @@ public class TaskList extends TaskItem {
         }
     }
 
+    //This method loops through the list to find the marked items and display them appropriately
     public static void displayMarkedItems(){
         for(int i = 0; i <= list.size(); i++){
             System.out.println("Unmarked Tasks");
@@ -96,6 +108,7 @@ public class TaskList extends TaskItem {
             displayList();
         }
     }
+    //This method loops through the list to find the un-marked items and display them appropriately
     public static void displayUnmarkedItems(){
         for(int i = 0; i <= list.size(); i++){
             System.out.println("Unmarked Tasks");
@@ -104,6 +117,7 @@ public class TaskList extends TaskItem {
         }
     }
 
+    //This method allows the user to edit the item by changing the title, description, and date
     public static void editItem(){
 
         System.out.println("Choose a task from the list to edit: ");
@@ -111,6 +125,7 @@ public class TaskList extends TaskItem {
         displayList();
         Scanner userChoiceScn = new Scanner(System.in);
 
+        //This try catch block will see if the user enters a correct choice from the list of tasks provided
         try{
             int choice = userChoiceScn.nextInt();
         }catch(InputMismatchException ex){
@@ -122,8 +137,10 @@ public class TaskList extends TaskItem {
         }
         int choice = userChoiceScn.nextInt();
 
+        //The task is retrieved
         list.get(choice);
 
+        //This try catch block will ensure the user enters a valid title
         System.out.println("Enter a new title for the task: ");
         Scanner userNewTitle = new Scanner(System.in);
         try{
@@ -135,6 +152,7 @@ public class TaskList extends TaskItem {
             setTaskTitle(newTitle);
         }
 
+        //This try catch block will ensure the user enters a valid description
         System.out.println("Enter a new description for the task: ");
         Scanner userNewDescription = new Scanner(System.in);
         try{
@@ -146,6 +164,7 @@ public class TaskList extends TaskItem {
             setTaskDescription(newDescription);
         }
 
+        //This try catch block will ensure the user enters a valid date
         System.out.println("Enter a new date for the task: ");
         Scanner userNewDate = new Scanner(System.in);
         try{
@@ -158,6 +177,7 @@ public class TaskList extends TaskItem {
         }
     }
 
+    //This method allows the user to save their list to any file they wish
     public static void saveToFile() throws IOException {
         Scanner userFileName = new Scanner(System.in);
         System.out.println("Please enter a name for the file you wish to save your work as: ");
@@ -177,6 +197,7 @@ public class TaskList extends TaskItem {
 
     }
 
+    //This method allows the user to load any file they input so long as it exists.
     public void loadToFile(File file) throws IOException{
         try{
             FileReader reader = new FileReader(file);
